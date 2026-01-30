@@ -6,15 +6,17 @@ import useDarkMode from '../hooks/useDarkMode';
 
 const Links = () => {
   const { isDark } = useDarkMode();
-  const formRef = useRef();
+  const formRef = useRef(null);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
-    message: ''
+    message: '',
   });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
 
   const { scrollY } = useScroll();
   const parallaxY = useTransform(scrollY, [0, 1400], [0, 280]);
@@ -38,32 +40,42 @@ const Links = () => {
     {
       name: 'WhatsApp',
       icon: FaWhatsapp,
-      url: 'https://wa.me/33753820531', // ⬅️ remplace par TON numéro
-    }
+      url: 'https://wa.me/33753820531',
+    },
   ];
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!formRef.current) return;
+
     setIsSubmitting(true);
     setSubmitStatus(null);
 
-    sendForm(
-      'service_lza38zh',
-      'template_pjy1ncs',
-      formRef.current,
-      'E-liz-zoKMIdSLKFE'
-    )
-      .then(() => {
-        setSubmitStatus('success');
-        setFormData({ name: '', email: '', subject: '', message: '' });
-      })
-      .catch(() => setSubmitStatus('error'))
-      .finally(() => setIsSubmitting(false));
+    try {
+      await sendForm(
+        'service_lza38zh',     // ✅ SERVICE_ID
+        'template_pjy1ncs',    // ✅ TEMPLATE_ID
+        formRef.current,
+        'E-liz-zoKMIdSLKFE'    // ✅ PUBLIC_KEY
+      );
+
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+
+      // Reset du form HTML (sécurise le reset visuel)
+      formRef.current.reset();
+    } catch (err) {
+      console.error('EmailJS error:', err);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -88,12 +100,13 @@ const Links = () => {
           className="absolute inset-0 w-full h-full object-cover"
           style={{ opacity: isDark ? 1 : 0 }}
         />
+
         <div
           className="absolute inset-0"
           style={{
             background: isDark
               ? 'linear-gradient(120deg, rgba(0,0,0,0.6), rgba(30,30,34,0.6))'
-              : 'linear-gradient(120deg, rgba(255,255,255,0.6), rgba(240,240,240,0.6))'
+              : 'linear-gradient(120deg, rgba(255,255,255,0.6), rgba(240,240,240,0.6))',
           }}
         />
       </div>
@@ -102,7 +115,8 @@ const Links = () => {
         className="absolute inset-0 z-0 pointer-events-none"
         style={{
           y: parallaxY,
-          background: 'linear-gradient(120deg, rgba(59,130,246,0.07), rgba(16,185,129,0.1))'
+          background:
+            'linear-gradient(120deg, rgba(59,130,246,0.07), rgba(16,185,129,0.1))',
         }}
       />
 
@@ -114,9 +128,7 @@ const Links = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Me contacter
-          </h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">Me contacter</h2>
           <p className="text-xl text-gray-700 dark:text-gray-300">
             Discutons de données, de projets et d’opportunités professionnelles
           </p>
@@ -140,26 +152,61 @@ const Links = () => {
 
         {/* Formulaire */}
         <div className="max-w-2xl mx-auto bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-2xl p-8">
-          <h3 className="text-2xl font-bold mb-6 text-center">
-            Envoyer un message
-          </h3>
+          <h3 className="text-2xl font-bold mb-6 text-center">Envoyer un message</h3>
 
           <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
-            <input name="name" placeholder="Nom" value={formData.name} onChange={handleInputChange} required className="w-full px-4 py-3 rounded-lg border" />
-            <input name="email" type="email" placeholder="Email" value={formData.email} onChange={handleInputChange} required className="w-full px-4 py-3 rounded-lg border" />
-            <input name="subject" placeholder="Objet" value={formData.subject} onChange={handleInputChange} required className="w-full px-4 py-3 rounded-lg border" />
-            <textarea name="message" rows="5" placeholder="Votre message…" value={formData.message} onChange={handleInputChange} required className="w-full px-4 py-3 rounded-lg border" />
+            <input
+              name="name"
+              placeholder="Nom"
+              value={formData.name}
+              onChange={handleInputChange}
+              required
+              className="w-full px-4 py-3 rounded-lg border"
+            />
+
+            <input
+              name="email"
+              type="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleInputChange}
+              required
+              className="w-full px-4 py-3 rounded-lg border"
+            />
+
+            <input
+              name="subject"
+              placeholder="Objet"
+              value={formData.subject}
+              onChange={handleInputChange}
+              required
+              className="w-full px-4 py-3 rounded-lg border"
+            />
+
+            <textarea
+              name="message"
+              rows="5"
+              placeholder="Votre message…"
+              value={formData.message}
+              onChange={handleInputChange}
+              required
+              className="w-full px-4 py-3 rounded-lg border"
+            />
 
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full py-3 rounded-xl bg-emerald-600 text-white font-bold hover:bg-emerald-700 transition"
+              className="w-full py-3 rounded-xl bg-emerald-600 text-white font-bold hover:bg-emerald-700 transition disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {isSubmitting ? 'Envoi en cours…' : 'Envoyer'}
             </button>
 
             {submitStatus && (
-              <p className={`text-center ${submitStatus === 'success' ? 'text-green-600' : 'text-red-600'}`}>
+              <p
+                className={`text-center ${
+                  submitStatus === 'success' ? 'text-green-600' : 'text-red-600'
+                }`}
+              >
                 {submitStatus === 'success'
                   ? 'Message envoyé avec succès. Je vous répondrai rapidement.'
                   : 'Erreur lors de l’envoi. Réessayez ou contactez-moi directement.'}
