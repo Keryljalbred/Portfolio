@@ -190,7 +190,11 @@ const Links = () => {
               value={formData.message}
               onChange={handleInputChange}
               required
-              className="w-full px-4 py-3 rounded-lg border"
+              className=" w-full px-4 py-3 rounded-lg border
+                bg-white text-gray-900
+                dark:bg-gray-900 dark:text-gray-100
+                placeholder-gray-400 dark:placeholder-gray-500
+                focus:outline-none focus:ring-2 focus:ring-emerald-500"
             />
 
             <button
