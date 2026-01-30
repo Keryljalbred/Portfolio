@@ -24,13 +24,11 @@ import {
   SiApachehadoop,
   SiDocker,
   SiJupyter,
-  SiGit,
   SiGithub,
   SiTensorflow,
   SiPytorch,
   SiHuggingface,
   SiGrafana,
-  SiPowerbi,
   SiFastapi,
 } from 'react-icons/si';
 
