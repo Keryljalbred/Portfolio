@@ -130,14 +130,15 @@ const About = () => {
               viewport={{ once: true }}
               whileHover={{ scale: 1.05 }}
             >
-             <div className="text-center bg-black/50 backdrop-blur-md px-5 py-3 rounded-2xl shadow-lg">
-              <div className="text-2xl font-extrabold text-emerald-400">
+             <div className="text-center bg-black/40 backdrop-blur-sm px-4 py-2 rounded-xl">
+              <div className="text-2xl font-bold text-emerald-400">
                 Junior
               </div>
-              <div className="text-base font-medium text-gray-100 uppercase tracking-wider">
+              <div className="text-base font-semibold text-white tracking-wide">
                 Data Engineer
               </div>
             </div>
+
 
             </motion.div>
           </motion.div>
