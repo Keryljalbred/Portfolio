@@ -35,7 +35,7 @@ const Projects = () => {
       title: 'FoodWasteZero — Plateforme data anti-gaspillage (Projet phare)',
       description:
         "Plateforme complète pour réduire le gaspillage alimentaire : ingestion & stockage, API, orchestration, prédictions ML, dashboards et déploiement. Un projet end-to-end orienté produit.",
-      image: process.env.PUBLIC_URL + '/foodwastezero.jpg', // mets une image propre dans /public
+      image: process.env.PUBLIC_URL + '/foodwastezero.png', // mets une image propre dans /public
       category: 'flagship',
       technologies: [
         'FastAPI',
@@ -67,7 +67,7 @@ const Projects = () => {
       title: 'Assistant pédagogique IA (RAG / QA)',
       description:
         "Assistant IA pour apprendre + réviser : recherche sémantique, récupération de contexte (RAG) et réponses guidées. Conçu pour être robuste et extensible.",
-      image: process.env.PUBLIC_URL + '/assistant-ia.jpg',
+      image: process.env.PUBLIC_URL + '/assistant-ia.png',
       category: 'ai',
       technologies: ['Python', 'NLP', 'RAG', 'LLM', 'Vector Search'],
       links: [
@@ -101,7 +101,7 @@ const Projects = () => {
       title: 'Pipeline IoT — Cassandra · Airflow · Grafana',
       description:
         "Traitement de données IoT : ingestion, orchestration, stockage Cassandra et monitoring/visualisation Grafana.",
-      image: process.env.PUBLIC_URL + '/iot-pipeline.jpg',
+      image: process.env.PUBLIC_URL + '/iot-pipeline.png',
       category: 'data',
       technologies: ['Cassandra', 'Airflow', 'Python', 'Grafana', 'IoT'],
       links: [
@@ -118,7 +118,7 @@ const Projects = () => {
       title: 'Comparaison NoSQL — étude comparative',
       description:
         "Étude comparative de bases NoSQL (modèles, performances, cas d’usage) + recommandations selon contexte.",
-      image: process.env.PUBLIC_URL + '/nosql.jpg',
+      image: process.env.PUBLIC_URL + '/nosql.png',
       category: 'db',
       technologies: ['NoSQL', 'Cassandra', 'MongoDB', 'Benchmark', 'Python'],
       links: [
@@ -135,7 +135,7 @@ const Projects = () => {
       title: 'Netflix Project — atelier data (NumPy / Pandas)',
       description:
         "Exploration et analyse de données : préparation, features, visualisations et interprétation.",
-      image: process.env.PUBLIC_URL + '/netflix.jpg',
+      image: process.env.PUBLIC_URL + '/netflix.png',
       category: 'viz',
       technologies: ['Pandas', 'NumPy', 'Jupyter', 'DataViz'],
       links: [
@@ -152,7 +152,7 @@ const Projects = () => {
       title: 'DataMining — collection de projets & notebooks',
       description:
         "Sélection de notebooks : exploration, preprocessing, classification, clustering, évaluation et bonnes pratiques.",
-      image: process.env.PUBLIC_URL + '/datamining.jpg',
+      image: process.env.PUBLIC_URL + '/datamining.png',
       category: 'ai',
       technologies: ['Jupyter', 'Pandas', 'ML', 'EDA'],
       links: [

@@ -186,8 +186,12 @@ const About = () => {
               <br />
               • <b>DataViz & Monitoring</b> (Power BI, Metabase, Grafana)
               <br /><br />
-
-              J’ai réalisé plusieurs projets concrets, dont un assistant pédagogique IA (RAG) et des pipelines
+              Mon projet principal, <b>FoodWasteZero</b>, est une plateforme data-driven dédiée à la réduction du
+              gaspillage alimentaire.  
+              J’y ai conçu des <b>pipelines ETL orchestrés</b>, une <b>API backend</b> et des <b>modèles de prédiction</b>
+              permettant d’analyser les dates de péremption, d’anticiper les risques de gaspillage et d’aider à une
+              meilleure gestion des produits alimentaires.
+              En complement,j’ai réalisé plusieurs projets concrets, dont un assistant pédagogique IA (RAG) et des pipelines
               temps réel pour capteurs IoT, ainsi que des pipelines de collecte/analyse de logs et des benchmarks NoSQL.
             </motion.p>
 
