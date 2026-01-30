@@ -84,7 +84,7 @@ const Projects = () => {
       title: 'Pipeline logs — Airflow · MongoDB · Power BI',
       description:
         "Pipeline de collecte, nettoyage et analyse de logs : orchestration Airflow, stockage MongoDB, restitution via dashboards Power BI.",
-      image: process.env.PUBLIC_URL + '/logs-pipeline.jpg',
+      image: process.env.PUBLIC_URL + '/logs-pipeline.png',
       category: 'data',
       technologies: ['Airflow', 'MongoDB', 'Python', 'Power BI', 'ETL'],
       links: [
