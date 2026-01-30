@@ -107,7 +107,7 @@ const About = () => {
                 viewport={{ once: true }}
               />
               <motion.img
-                src={process.env.PUBLIC_URL + "/profile.png"}
+                src={process.env.PUBLIC_URL + "/profile.jpeg"}
                 alt="Keryl Djeukoua Tchani"
                 loading="lazy"
                 width="600"
