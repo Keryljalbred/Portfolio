@@ -59,10 +59,10 @@ const Links = () => {
 
     try {
       await sendForm(
-        'service_lza38zh',     // ✅ SERVICE_ID
-        'template_pjy1ncs',    // ✅ TEMPLATE_ID
+        'service_zmhqaxv',     // ✅ SERVICE_ID
+        'template_r8hbat3',    // ✅ TEMPLATE_ID
         formRef.current,
-        'E-liz-zoKMIdSLKFE'    // ✅ PUBLIC_KEY
+        'psD_uSeLaHogI8mlo'    // ✅ PUBLIC_KEY
       );
 
       setSubmitStatus('success');
