@@ -1,3 +1,4 @@
+// src/components/TechStackCarousel.jsx
 import React, { useState } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import {
@@ -10,7 +11,7 @@ import {
   FaCogs,
   FaLaptopCode,
   FaProjectDiagram,
-  FaTools
+  FaTools,
 } from 'react-icons/fa';
 import {
   SiPython,
@@ -42,10 +43,11 @@ const TECH_CATEGORIES = [
       { name: 'Python', icon: SiPython, color: '#3776AB' },
       { name: 'SQL', icon: FaDatabase, color: '#336791' },
       { name: 'R', icon: SiR, color: '#276DC3' },
-      { name: 'Power Query', icon: FaTools, color: '#2E7D32' },
       { name: 'DAX', icon: FaTools, color: '#1976D2' },
+      { name: 'Power Query', icon: FaTools, color: '#2E7D32' },
     ],
   },
+
   {
     id: 'data-engineering',
     title: 'Data Engineering',
@@ -53,14 +55,16 @@ const TECH_CATEGORIES = [
     color: '#10B981',
     items: [
       { name: 'ETL / ELT', icon: FaProjectDiagram, color: '#10B981' },
+      { name: 'Conception de pipelines', icon: FaCogs, color: '#0EA5E9' },
       { name: 'Apache Airflow', icon: SiApacheairflow, color: '#017CEE' },
       { name: 'Talend', icon: FaCogs, color: '#1E3A8A' },
-      { name: 'Apache Spark', icon: SiApachespark, color: '#E25A1C' },
-      { name: 'Apache Hadoop', icon: SiApachehadoop, color: '#66CCFF' },
       { name: 'Docker', icon: SiDocker, color: '#2496ED' },
       { name: 'Git / GitHub', icon: SiGithub, color: '#111827' },
+      { name: 'Tests & validation', icon: FaTools, color: '#6B7280' },
+      { name: 'Automatisation', icon: FaCogs, color: '#22C55E' },
     ],
   },
+
   {
     id: 'bases-de-donnees',
     title: 'Bases de données',
@@ -72,11 +76,28 @@ const TECH_CATEGORIES = [
       { name: 'MongoDB', icon: SiMongodb, color: '#47A248' },
       { name: 'Cassandra', icon: FaDatabase, color: '#1287B1' },
       { name: 'Snowflake', icon: SiSnowflake, color: '#29B5E8' },
-      { name: 'Elasticsearch', icon: FaDatabase, color: '#F5A623' },
+      { name: 'Elasticsearch', icon: FaDatabase, color: '#F59E0B' },
+      { name: 'SQLite', icon: FaDatabase, color: '#4B5563' },
     ],
   },
+
   {
-    id: 'ml-ia',
+    id: 'bigdata-cloud',
+    title: 'Big Data & Cloud',
+    icon: FaCloud,
+    color: '#6366F1',
+    items: [
+      { name: 'Apache Spark', icon: SiApachespark, color: '#E25A1C' },
+      { name: 'Apache Hadoop', icon: SiApachehadoop, color: '#66CCFF' },
+      { name: 'BigQuery', icon: FaCloud, color: '#4285F4' },
+      { name: 'AWS', icon: FaCloud, color: '#FF9900' },
+      { name: 'Data Lakes', icon: FaCloud, color: '#22C55E' },
+      { name: 'Data Warehousing', icon: FaCloud, color: '#0EA5E9' },
+    ],
+  },
+
+  {
+    id: 'ia-ml',
     title: 'IA & Machine Learning',
     icon: FaRobot,
     color: '#EF4444',
@@ -84,47 +105,43 @@ const TECH_CATEGORIES = [
       { name: 'Scikit-learn', icon: FaRobot, color: '#F7931E' },
       { name: 'TensorFlow', icon: SiTensorflow, color: '#FF6F00' },
       { name: 'PyTorch', icon: SiPytorch, color: '#EE4C2C' },
+      { name: 'NLP', icon: FaComments, color: '#F59E0B' },
+      { name: 'LLM', icon: FaComments, color: '#8B5CF6' },
+      { name: 'RAG', icon: FaComments, color: '#7C3AED' },
+      { name: 'LangChain', icon: FaRobot, color: '#22C55E' },
       { name: 'Hugging Face', icon: SiHuggingface, color: '#FFCC00' },
-      { name: 'NLP / LLM', icon: FaComments, color: '#F59E0B' },
-      { name: 'RAG', icon: FaComments, color: '#8B5CF6' },
+      { name: 'FAISS', icon: FaDatabase, color: '#3B82F6' },
+      { name: 'Détection d’anomalies', icon: FaRobot, color: '#EF4444' },
     ],
   },
+
   {
-    id: 'cloud-bigdata',
-    title: 'Cloud & Big Data',
-    icon: FaCloud,
-    color: '#6366F1',
+    id: 'frameworks-outils',
+    title: 'Frameworks & Outils',
+    icon: FaLaptopCode,
+    color: '#6B7280',
     items: [
-      { name: 'AWS', icon: FaCloud, color: '#FF9900' },
-      { name: 'BigQuery', icon: FaCloud, color: '#4285F4' },
-      { name: 'Data Warehousing', icon: FaCloud, color: '#0EA5E9' },
-      { name: 'Data Lakes', icon: FaCloud, color: '#22C55E' },
+      { name: 'FastAPI', icon: SiFastapi, color: '#009688' },
+      { name: 'Jupyter', icon: SiJupyter, color: '#F37626' },
+      { name: 'Pandas', icon: FaTools, color: '#111827' },
+      { name: 'NumPy', icon: FaTools, color: '#4B5563' },
+      { name: 'Postman', icon: FaTools, color: '#F97316' },
     ],
   },
+
   {
-    id: 'visualisation-monitoring',
+    id: 'dataviz-monitoring',
     title: 'DataViz & Monitoring',
     icon: FaChartBar,
     color: '#8B5CF6',
     items: [
       { name: 'Power BI', icon: FaChartBar, color: '#F2C811' },
-      { name: 'Metabase', icon: FaChartBar, color: '#3B82F6' },
       { name: 'Grafana', icon: SiGrafana, color: '#F46800' },
+      { name: 'Metabase', icon: FaChartBar, color: '#3B82F6' },
+      { name: 'Streamlit', icon: FaLaptopCode, color: '#FF4B4B' },
+      { name: 'Tableau', icon: FaChartBar, color: '#2563EB' },
       { name: 'Matplotlib', icon: FaChartBar, color: '#11557C' },
       { name: 'Seaborn', icon: FaChartBar, color: '#7A9BC0' },
-    ],
-  },
-  {
-    id: 'outils-frameworks',
-    title: 'Outils & Frameworks',
-    icon: FaLaptopCode,
-    color: '#6B7280',
-    items: [
-      { name: 'Jupyter', icon: SiJupyter, color: '#F37626' },
-      { name: 'FastAPI', icon: SiFastapi, color: '#009688' },
-      { name: 'Tests & validation', icon: FaCogs, color: '#111827' },
-      { name: 'Automatisation', icon: FaCogs, color: '#10B981' },
-      { name: 'Veille technologique', icon: FaCogs, color: '#8B5CF6' },
     ],
   },
 ];
@@ -132,7 +149,7 @@ const TECH_CATEGORIES = [
 const TechStackCarousel = () => {
   const [activeCategory, setActiveCategory] = useState(0);
 
-  // Parallax effect for background
+  // Parallax background
   const { scrollY } = useScroll();
   const parallaxY = useTransform(scrollY, [0, 1000], [0, 200]);
 
@@ -150,7 +167,7 @@ const TechStackCarousel = () => {
           style={{ opacity: 1, transition: 'opacity 0.7s cubic-bezier(0.22,1,0.36,1)' }}
         />
 
-        {/* Overlay for text clarity (cohérent light/dark) */}
+        {/* Overlay for text clarity */}
         <div
           className="absolute inset-0"
           style={{
@@ -161,7 +178,7 @@ const TechStackCarousel = () => {
         />
       </div>
 
-      {/* Parallax Background Layer */}
+      {/* Parallax gradient */}
       <motion.div
         className="absolute inset-0 z-0 pointer-events-none"
         style={{
@@ -173,7 +190,7 @@ const TechStackCarousel = () => {
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -190,6 +207,7 @@ const TechStackCarousel = () => {
           >
             Compétences techniques
           </motion.h2>
+
           <motion.p
             className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
@@ -221,10 +239,7 @@ const TechStackCarousel = () => {
                 }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                style={{
-                  backdropFilter: 'blur(8px)',
-                  WebkitBackdropFilter: 'blur(8px)',
-                }}
+                style={{ backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)' }}
               >
                 <category.icon className="w-5 h-5" />
                 <span className="hidden sm:inline">{category.title}</span>
@@ -256,12 +271,9 @@ const TechStackCarousel = () => {
                   y: -5,
                   boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
                 }}
-                style={{
-                  backdropFilter: 'blur(8px)',
-                  WebkitBackdropFilter: 'blur(8px)',
-                }}
+                style={{ backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)' }}
               >
-                <div className="flex flex-col items-center text-center space-y-3">
+                <div className="flex flex-col items-center text-center space-y-3 relative z-10">
                   <div
                     className="w-16 h-16 rounded-xl flex items-center justify-center text-2xl"
                     style={{ backgroundColor: `${tech.color}20`, color: tech.color }}
@@ -273,14 +285,14 @@ const TechStackCarousel = () => {
                   </h3>
                 </div>
 
-                {/* Hover effect overlay */}
+                {/* Hover overlay */}
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-emerald-500/10 to-sky-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </motion.div>
             ))}
           </motion.div>
         </AnimatePresence>
 
-        {/* Category Description */}
+        {/* Active Category Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -292,7 +304,10 @@ const TechStackCarousel = () => {
             {(() => {
               const IconComponent = TECH_CATEGORIES[activeCategory].icon;
               return (
-                <IconComponent className="w-6 h-6" style={{ color: TECH_CATEGORIES[activeCategory].color }} />
+                <IconComponent
+                  className="w-6 h-6"
+                  style={{ color: TECH_CATEGORIES[activeCategory].color }}
+                />
               );
             })()}
             <span className="font-medium text-gray-900 dark:text-white">
