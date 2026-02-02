@@ -31,6 +31,7 @@ import {
   SiHuggingface,
   SiGrafana,
   SiFastapi,
+  SiNextdotjs,
 } from 'react-icons/si';
 
 const TECH_CATEGORIES = [
@@ -58,9 +59,8 @@ const TECH_CATEGORIES = [
       { name: 'Conception de pipelines', icon: FaCogs, color: '#0EA5E9' },
       { name: 'Apache Airflow', icon: SiApacheairflow, color: '#017CEE' },
       { name: 'Talend', icon: FaCogs, color: '#1E3A8A' },
-      { name: 'Docker', icon: SiDocker, color: '#2496ED' },
-      { name: 'Git / GitHub', icon: SiGithub, color: '#111827' },
-      { name: 'Tests & validation', icon: FaTools, color: '#6B7280' },
+      { name: 'Apache Spark', icon: SiApachespark, color: '#E25A1C' },
+      { name: 'Apache Hadoop', icon: SiApachehadoop, color: '#66CCFF' },
       { name: 'Automatisation', icon: FaCogs, color: '#22C55E' },
     ],
   },
@@ -121,6 +121,9 @@ const TECH_CATEGORIES = [
     icon: FaLaptopCode,
     color: '#6B7280',
     items: [
+      { name: 'Next.js', icon: SiNextdotjs, color: '#111827' },
+      { name: 'Git / GitHub', icon: SiGithub, color: '#111827' },
+      { name: 'Docker', icon: SiDocker, color: '#2496ED' },
       { name: 'FastAPI', icon: SiFastapi, color: '#009688' },
       { name: 'Jupyter', icon: SiJupyter, color: '#F37626' },
       { name: 'Pandas', icon: FaTools, color: '#111827' },
