@@ -79,7 +79,9 @@ const Links = () => {
   };
 
   return (
-    <section className="py-20 relative overflow-hidden bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+    <section 
+    id="contact"
+    className="py-20 relative overflow-hidden bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
       {/* Vidéos de fond */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <video

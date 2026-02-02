@@ -309,7 +309,7 @@ const Hero = () => {
           </a>
 
           <a
-            href="#links"
+            href="#contact"
             className="px-8 py-3 text-lg font-semibold text-gray-900 dark:text-white bg-white/70 dark:bg-gray-800/70 rounded-full border border-gray-200 dark:border-gray-700 hover:bg-white dark:hover:bg-gray-800 transition-colors duration-300 transform hover:scale-105 backdrop-blur-sm"
           >
             Me contacter
